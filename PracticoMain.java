@@ -109,7 +109,7 @@ public class PracticoMain {
 		
 		System.out.println ("");
 		System.out.println ("");
-		System.out.println ("Imprimo la lista desordenada 2:");
+		System.out.println ("Imprimo la lista desordenada 3:");
 
 		//Creo iterador de la Lista Desordenada 3 e imprimo
 

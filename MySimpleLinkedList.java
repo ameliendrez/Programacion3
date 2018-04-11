@@ -51,15 +51,17 @@ public class MySimpleLinkedList implements Iterable<Object> {
 	}
 	
 	public void insertLast(Object o) {
-		Node tmp = new Node(o,null);
-		if (last!=null) {
-			last.setNext(tmp);
-			last = tmp;
-		}else {
-			last = tmp;
-			first = tmp;
-		}
-		this.nodeCount++;	
+		if((this.search((int)o) == null )) {
+			Node tmp = new Node(o,null);
+			if (last!=null) {
+				last.setNext(tmp);
+				last = tmp;
+			}else {
+				last = tmp;
+				first = tmp;
+			}
+			this.nodeCount++;
+		}	
 	}
 
 	public Object extract() {
@@ -104,7 +106,6 @@ public class MySimpleLinkedList implements Iterable<Object> {
 			this.insert(elemento);
 		}
 		else {
-			System.out.println("Entra en insertar");
 			cursor = first;
 			while (cursor.getNext() != null  && cursor.getInfo() != elemento && cursor.getNext().getInfo() != elemento) {
 				if ((int)cursor.getNext().getInfo() > (int)elemento) {
