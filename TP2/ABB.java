@@ -24,26 +24,20 @@ public class ABB {
 	
 	public boolean hasElem(Integer elementoBuscado) {
 
-		if (this.getInfo().equals(elementoBuscado)) {
-			return true;
-		} 
-		else if ((this.getInfo()).compareTo(elementoBuscado) > 0) {
-			if (!this.isEmptyIzq()) {
+		if (this.getInfo().equals(elementoBuscado)) 
+			return true; 
+		
+		else if ((this.getInfo()).compareTo(elementoBuscado) > 0) 
+			if (!this.isEmptyIzq()) 
 				return this.getIzq().hasElem(elementoBuscado);
-			} 
-			else {
+			else 
 				return false;
-			}
-		} 
-		else {
-
-			if (!this.isEmptyDer()) {
-
+		
+		else 
+			if (!this.isEmptyDer()) 
 				return this.getDer().hasElem(elementoBuscado);
-			} else {
+			else 
 				return false;
-			}
-		}
 	}
 
 	public void insert(Integer nuevoElemento) {
@@ -53,28 +47,28 @@ public class ABB {
 					ABB nodoIzq = new ABB();
 					nodoIzq.insert(nuevoElemento);
 					this.izq = nodoIzq;
-				} else {
+				} 
+				else {
 					this.getIzq().insert(nuevoElemento);
 				}
-			} else {
+			} 
+			else {
 				if (this.isEmptyDer()) {
 					ABB nodoDer = new ABB();
 					nodoDer.insert(nuevoElemento);
 					this.der = nodoDer;
-				} else {
+				} 
+				else {
 					this.getDer().insert(nuevoElemento);
 				}
 			}
 		}
 		else {
-			if (this.getInfo() == null) {
+			if (this.getInfo() == null) 
 				this.info = nuevoElemento;
-			} 
-			else {
+			else 
 				System.out.println ("El numero " + nuevoElemento +" ya existe. No se puede agregar nuevamente");
-			}
 		}
-		
 	}
 
 	public void addNodoDer(ABB nodoDer) {
@@ -110,60 +104,49 @@ public class ABB {
 	}
 	
 	public void printInOrder(){
-		if (!this.isEmptyIzq()) {
+		if (!this.isEmptyIzq()) 
 			this.getIzq().printInOrder();
-		}
-		
 		System.out.print(this.getInfo() + " - ");
-
-		if (!this.isEmptyDer()) {
+		if (!this.isEmptyDer()) 
 			this.getDer().printInOrder();
-		}
 	}
 	
 	public void printPreOrder(){
 		System.out.print(this.getInfo() + " - ");
 
-		if (!this.isEmptyIzq()) {
+		if (!this.isEmptyIzq()) 
 			this.getIzq().printPreOrder();
-		}
-		if (!this.isEmptyDer()) {
+		
+		if (!this.isEmptyDer()) 
 			this.getDer().printPreOrder();
-		}
 	}
 	
 	public void printPosOrder(){
-		if (!this.isEmptyIzq()) {
+		if (!this.isEmptyIzq()) 
 			this.getIzq().printPosOrder();
-		}
 		
-		if (!this.isEmptyDer()) {
+		if (!this.isEmptyDer()) 
 			this.getDer().printPosOrder();
-		}
 		
 		System.out.print(this.getInfo() + " - ");
 	}
 	
 	public Integer getMaxElem(){
-		if (!this.isEmptyDer()) {
+		if (!this.isEmptyDer()) 
 			return this.getDer().getMaxElem();
-		}
-		else{
+
+		else
 			return this.getInfo();
-		}
 	}
 	
 	public int getHeight() {
 	
-		if (this.isEmptyDer() && this.isEmptyIzq()) {
-			return 1;
-		}
-		if (!this.isEmptyIzq()) {
+		if (this.isEmptyDer() && this.isEmptyIzq()) 
+			return 0;
+		if (!this.isEmptyIzq()) 
 			alturaIzq = this.getIzq().getHeight() + 1;
-		}
-		if (!this.isEmptyDer()) {
+		if (!this.isEmptyDer()) 
 			alturaDer = this.getDer().getHeight() + 1;
-		}
 
 		altura = (alturaDer > alturaIzq) ? alturaDer : alturaIzq; 
 		return altura;
@@ -216,16 +199,14 @@ public class ABB {
 	public ArrayList<Integer> getFrontera (){
 		ArrayList<Integer> lista = new ArrayList<Integer>();
 		
-		if (!this.isEmptyIzq()) {
+		if (!this.isEmptyIzq()) 
 			lista.addAll(this.getIzq().getFrontera());
-		}
 		
-		if (!this.isEmptyDer()) {
+		if (!this.isEmptyDer()) 
 			lista.addAll(this.getDer().getFrontera());
-		}
-		if (this.isEmptyDer() && this.isEmptyIzq()) {
+
+		if (this.isEmptyDer() && this.isEmptyIzq()) 
 			lista.add(this.getInfo());
-		}
 
 		return lista;
 	}
@@ -301,7 +282,7 @@ public class ABB {
 	
 
 	
-	//METODOS
+	//METODOS QUE FALTAN IMPLEMENTAR
 	
 //	boolean delete(Object), 
 	

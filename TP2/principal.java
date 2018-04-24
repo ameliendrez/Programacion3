@@ -8,13 +8,13 @@ public class principal {
 		
 		ABB arbol = new ABB();
 		
-		for (int i = 0; i < 20; i++){
+		for (int i = 0; i < 10; i++){
 			
-			arbol.insert((int)(Math.random() * 80) + 1);
+			arbol.insert((int)(Math.random() * 20) + 1);
 		}
 		
 		System.out.println("");
-		int elemento = (int)(Math.random() * 80) + 1;
+		int elemento = (int)(Math.random() * 20) + 1;
 
 		System.out.println(arbol.hasElem(elemento) ? "El arbol TIENE el numero " + elemento:"El arbol NO tiene el numero " + elemento);
 		
