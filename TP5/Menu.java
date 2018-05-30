@@ -8,7 +8,7 @@ public class Menu {
 		// 2: cantidad de numeros a usar (k) 
 		// 3: resultado de suma filas y columnas (S)
 
-		TableroMagico tablero = new TableroMagico(4, 25, 27);	
+		TableroMagico tablero = new TableroMagico(3, 12, 15);	
 		
 		//Le pregunto al tablero si existe una solucion.
 		System.out.println(tablero.buscarSolucion() ? "Encontro una solucion": "No hay soluciones");	

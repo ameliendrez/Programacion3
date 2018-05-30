@@ -43,9 +43,21 @@ public class TableroMagico {
 		return true;
 	}
 	
+	private int contarCeros(){
+		int contadorCeros = 0;
+		
+		for(int i = 0; i < cantidadFC; i++) {
+			for(int j = 0; j < cantidadFC; j++) {
+				if (tablero[i][j] == 0) {
+					contadorCeros++;
+				}
+			}
+		}
+		return contadorCeros;
+	}
+	
 	private boolean numeroFactible(int fila, int columna, int nuevoNumero)
 	{
-		
 		if((sumaFilas[fila] + nuevoNumero > sumaSolucion ||
 				sumaColumnas[columna] + nuevoNumero > sumaSolucion)) 
 			
@@ -71,12 +83,16 @@ public class TableroMagico {
 
 	public boolean backTrackingTablero(int fila, int columna){
 		
-		boolean solucion = false;
+		boolean encontroSolucion = false;
 
 		if(haySolucion()) { // Consulta si existe una solucion.
-			mostrarTablero(); //En caso de existir, imprime la matriz con los valores correspondientes.
-			solucion = true;
-			return solucion; //Finaliza la busqueda.
+			if (contarCeros()<=1) {
+				mostrarTablero(); //En caso de existir, imprime la matriz con los valores correspondientes.
+				
+				//Para que imprima toda las soluciones posibles, hay que eliminar las proximas 2 lineas
+				encontroSolucion = true;
+				return encontroSolucion; //Finaliza la busqueda.
+			}
 		}
 		//En caso de no existir solucion
 		boolean elimineNumero = false;
@@ -84,26 +100,22 @@ public class TableroMagico {
 		
 		//Comprueba que no haya encontrado solucion, que no se hayan descartado numeros, 
 		//y que el numero seleccionado se menor al maximo numero posible de utilizar
-		while(!solucion && !elimineNumero && numeroSeleccionado <= maxNum) {
+		while(!encontroSolucion && !elimineNumero && numeroSeleccionado <= maxNum) {
 			if(!numeroUsado[numeroSeleccionado]) { //Si el numero no esta utilizado
 				if(!numeroFactible(fila, columna, numeroSeleccionado))
 					elimineNumero = true; 	// si se pasa del numero solucion (s) corta la ejecucion
 				else { 						//Sino, recorre filas y columnas agregando numeros
-					int prox_col = 0; 
-					int prox_fila = 0;
+					int proximaColumna = 0; 
+					int proximaFila = 0;
 					
-					//----------ACA SE ESTA SALIENDO DEL ARREGLO -------------//
-					//----------no se si fila o columna----------------------//
-					
-					prox_fila = (columna == cantidadFC - 1) ? (fila + 1) : fila;
-					prox_col = (columna == cantidadFC - 1) ? 0 : (columna + 1);
-					
+					proximaFila = (columna == cantidadFC - 1) ? (fila + 1) : fila;
+					proximaColumna = (columna == cantidadFC - 1) ? 0 : (columna + 1);
 					numeroUsado[numeroSeleccionado] = true;
 					tablero[fila][columna] = numeroSeleccionado;
 					sumaFilas[fila] += numeroSeleccionado;
 					sumaColumnas[columna] += numeroSeleccionado;
 					//Luego de insertar un numero, realiza la recursion (backtracking)
-					solucion = (prox_fila == cantidadFC || prox_col == cantidadFC) ? false : backTrackingTablero(prox_fila, prox_col); 
+					encontroSolucion = (proximaFila == cantidadFC || proximaFila == cantidadFC) ? false : backTrackingTablero(proximaFila, proximaColumna); 
 					//Luego vuelvo a la situacion inicial
 					numeroUsado[numeroSeleccionado] = false;
 					tablero[fila][columna] = 0;
@@ -113,6 +125,6 @@ public class TableroMagico {
 			}
 			numeroSeleccionado++; //Cuando finaliza con un numero, lo aumenta
 		}
-		return solucion; //Al finalizar, si encontro una solucion retorna true, sino false.
+		return encontroSolucion; //Al finalizar, si encontro una solucion retorna true, sino false.
 	}
 }
