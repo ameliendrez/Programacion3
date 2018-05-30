@@ -45,16 +45,6 @@ public class TableroMagico {
 	
 	private boolean numeroFactible(int fila, int columna, int nuevoNumero)
 	{
-		//--------BORRAR------------//
-//		if ((sumaFilas[fila] + nuevoNumero == sumaSolucion) ||
-//				(sumaColumnas[columna] + nuevoNumero == sumaSolucion)) {
-//			System.out.println("");
-//			System.out.println("La suma de la fila " + fila + " es " + (sumaFilas[fila] + nuevoNumero));
-//			System.out.println("La suma de la columna " + columna + " es " + (sumaColumnas[columna] + nuevoNumero));
-//			System.out.println("");
-//		}
-		
-		//-------FIN BORRAR--------//
 		
 		if((sumaFilas[fila] + nuevoNumero > sumaSolucion ||
 				sumaColumnas[columna] + nuevoNumero > sumaSolucion)) 
